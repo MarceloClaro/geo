@@ -7,19 +7,11 @@ from sklearn.cluster import KMeans
 
 st.title("Monitoria da vegetação")
 
-# Permitir o upload de várias imagens TIFF
-uploaded_files = []
+# Permitir o upload de uma imagem TIFF
+uploaded_file = st.file_uploader("Escolha a imagem Sentinel-2:", type="tif")
 
-i = 1
-while True:
-    uploaded_file = st.file_uploader("Escolha a imagem Sentinel-2:", type="tif", key=f"uploader_{i}")
-    if uploaded_file is None:
-        break
-    uploaded_files.append(uploaded_file)
-    i += 1
-
-# Processar cada imagem TIFF
-for uploaded_file in uploaded_files:
+# Verificar se o usuário escolheu uma imagem
+if uploaded_file is not None:
     # Salvar o arquivo carregado em um lugar específico
     filename = "minha_imagem.tif"
     open(filename, "wb").write(uploaded_file.read())
@@ -61,3 +53,5 @@ for uploaded_file in uploaded_files:
     # Exibir os resultados
     st.write('Porcentagem de pixels em cada cluster:')
     st.write(cluster_percentages)
+
+    
