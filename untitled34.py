@@ -12,7 +12,7 @@ uploaded_files = []
 
 i = 1
 while True:
-    uploaded_file = st.file_uploader("Choose Sentinel-2 image:", type="tif", key=f"uploader_{i}")
+    uploaded_file = st.file_uploader("Escolha a imagem Sentinel-2:", type="tif", key=f"uploader_{i}")
     if uploaded_file is None:
         break
     uploaded_files.append(uploaded_file)
@@ -20,8 +20,12 @@ while True:
 
 # Processar cada imagem TIFF
 for uploaded_file in uploaded_files:
-    # Carregar a imagem TIFF usando o OpenCV
-    image = cv2.imread(uploaded_file)
+    # Salvar o arquivo carregado em um lugar específico
+    filename = "minha_imagem.tif"
+    open(filename, "wb").write(uploaded_file.read())
+
+    # Carregar a imagem TIFF usando o OpenCV e o caminho para o arquivo salvo
+    image = cv2.imread(filename)
 
     # Converter a imagem para uma representação de valores de pixel de ponto flutuante
     image = image.astype(np.float32)
@@ -42,7 +46,7 @@ for uploaded_file in uploaded_files:
     image_bytes = image.tobytes()
     image = Image.open(image_bytes)
     image.save('image.jpg')
-    st.image('image.jpg', width=500)
+    st.image('imagem.jpg', width=500)
 
     # Realizar o cluster K-means com K=5
     kmeans = KMeans(n_clusters=5)
