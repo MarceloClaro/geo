@@ -1,4 +1,4 @@
-cv2
+
 NumPy
 Matplotlib 
 Pillow 
