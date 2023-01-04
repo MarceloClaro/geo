@@ -5,25 +5,26 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from sklearn.cluster import KMeans
 
-st.title('NDVI Image Processing')
+st.title("Monitoria da vegetação")
 
 # Permitir o upload de várias imagens TIFF
 uploaded_files = []
+
+i = 1
 while True:
-    uploaded_file = st.file_uploader("Choose Sentinel-2 image:", type="tif")
+    uploaded_file = st.file_uploader("Choose Sentinel-2 image:", type="tif", key=f"uploader_{i}")
     if uploaded_file is None:
         break
     uploaded_files.append(uploaded_file)
+    i += 1
 
 # Processar cada imagem TIFF
 for uploaded_file in uploaded_files:
     # Carregar a imagem TIFF usando o OpenCV
     image = cv2.imread(uploaded_file)
 
-    # ... (resto do c
-        # Converter a imagem para uma representação de valores de pixel de ponto flutuante
+    # Converter a imagem para uma representação de valores de pixel de ponto flutuante
     image = image.astype(np.float32)
-
     # Obter as bandas de infravermelho e vermelho da imagem
     infrared_band = image[:,:,0]
     red_band = image[:,:,1]
@@ -56,4 +57,3 @@ for uploaded_file in uploaded_files:
     # Exibir os resultados
     st.write('Porcentagem de pixels em cada cluster:')
     st.write(cluster_percentages)
-
