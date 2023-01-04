@@ -34,7 +34,7 @@ if uploaded_file is not None:
     ndvi = (infrared_band - red_band) / (infrared_band + red_band)
 
     # Plotar o gráfico do NDVI
-    plt.imshow(ndvi, cmap='RdYlGn')
+    plt.imshow(ndvi, cmap='RdYlGn') 
     plt.colorbar()
     st.pyplot()
 
