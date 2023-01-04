@@ -24,7 +24,7 @@ if uploaded_file is not None:
     image = cv2.imread('uploaded_file')
 
     # Converter a imagem para uma representação de valores de pixel de ponto flutuante
-    image = image.astype(np.float32)
+    image = image.astype('np.float32')
 
     # Obter as bandas de infravermelho e vermelho da imagem
     infrared_band = image[:,:,0]
