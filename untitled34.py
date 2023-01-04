@@ -21,7 +21,7 @@ uploaded_file = st.file_uploader('Selecione a imagem TIFF:')
 
 if uploaded_file is not None:
     # Carregar a imagem TIFF usando o OpenCV
-    image = cv2.imread(uploaded_file)
+    image = cv2.imread('uploaded_file')
 
     # Converter a imagem para uma representação de valores de pixel de ponto flutuante
     image = image.astype(np.float32)
